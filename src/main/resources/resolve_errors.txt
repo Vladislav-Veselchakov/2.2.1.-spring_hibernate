@@ -1,0 +1,33 @@
+1) add in "Edit configurations" -- "add VB opions":
+--add-opens java.base/java.lang=ALL-UNNAMED
+2) Add dependencies (in pom file):
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
+        <!-- Runtime, com.sun.xml.bind module -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+3) change vertion my-sql-core in dependency (was v.6, now v. 8.0.26):
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
+        </dependency>
+4) Add two (2) hibernate properties:
+      props.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+      props.put("hibernate.connection.driver_class",  "com.mysql.cj.jdbc.Driver" );
+
+OR you can add them in db.properties file:
+
+hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver
+and in appConfig.java file:
+      props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+      props.put("hibernate.connection.driver_class",  env.getProperty("hibernate.connection.driver_class"));
+
