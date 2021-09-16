@@ -16,6 +16,7 @@ public class MainApp {
 
       UserService userService = context.getBean(UserService.class);
 
+/** addin users/cars
       userService.add(new User("User1", "Lastname1", "user1@mail.ru"));
       userService.add(new User("User2", "Lastname2", "user2@mail.ru"));
       userService.add(new User("User3", "Lastname3", "user3@mail.ru"));
@@ -25,6 +26,7 @@ public class MainApp {
       userService.add(new Car("mod2", 1002, userService.listUsers().get(1)));
       userService.add(new Car("mod3", 1003, userService.listUsers().get(2)));
       userService.add(new Car("mod4", 1004, userService.listUsers().get(3)));
+*/
 
       List<User> users = userService.listUsers();
       for (User user : users) {
