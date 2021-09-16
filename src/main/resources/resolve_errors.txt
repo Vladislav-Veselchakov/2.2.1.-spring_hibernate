@@ -1,4 +1,4 @@
-1) add in "Edit configurations" -- "add VB opions":
+1) add in "Edit configurations" -- "add VM opions":
 --add-opens java.base/java.lang=ALL-UNNAMED
 2) Add dependencies (in pom file):
         <dependency>
@@ -31,3 +31,18 @@ and in appConfig.java file:
       props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
       props.put("hibernate.connection.driver_class",  env.getProperty("hibernate.connection.driver_class"));
 
+============================================================
+hibernate.hbm2ddl.auto - свойство, которое указывается что нужно сделать со схемой БД при инициализации
+create -    При запуске приложения будет создавать схему заново. Все данные которые были в старой схеме потеряются.
+update -    При запуске приложения будет осуществляться сверка имеющейся в БД схемы с классами приложения. Если были изменения,то схема обновится, а данные останутся.
+create-drop - Аналогично create,только после завершения схема с данными будет удаляться.
+validate -  Будет проверять соответствие схемы и классов,если соответствия нет ,то выбросится исключение.
+none -      ничего не делает со схемой, не вносит изменений в базу данных
+
+================================
+LazyInitializationException can resolve by:
+
+1. force initialize :
+ Hibernate.initialize(lstCar.get(0).getUser());
+2. force initialize by "left join fetch" or simply "join fetch" and 2nd param Car.class:
+ Query query = session.createQuery("select c from Car c left join fetch c.user where c.model = :model and c.series = :series", Car.class);
